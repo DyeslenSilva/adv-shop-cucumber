@@ -6,29 +6,39 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
+import io.cucumber.java.Before;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
+import testes.driver.DriverAdvTest;
 
 public class CadastroCliente {
  
 	
 	private WebDriver driver;
-	
-	
-	public CadastroCliente() {
+	@Before
+	public void before() {
+		DriverAdvTest.setDriver();
 		driver = new ChromeDriver();
+		System.out.println("Before");
 	}
 	
+	
 	@Given("entro na pagina inicial")
-	public void entro_na_pagina_inicial() {
-		driver.navigate().to("http://advantageonlineshopping.com/#/register");
+	public void entro_na_pagina_inicial() throws InterruptedException {
+		DriverAdvTest.getDriver().navigate().to("http://advantageonlineshopping.com/#/");
 	}
 	
 	@Given("clico no botao de cliente")
-	public void clico_no_botao_de_cliente() {
-		WebElement botaoCliente = driver.findElement(By.xpath("//a[@id='hrefUserIcon']"));
+	public void clico_no_botao_de_cliente() throws InterruptedException {
+		
+		@SuppressWarnings("deprecation")
+		WebElement botaoCliente = (new WebDriverWait(driver, 10)).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//a[@data-ng-click=\"login('loginMiniTitle')\"]")));
+				
+				
 		botaoCliente.click();
 	}
 	

@@ -6,8 +6,8 @@ import io.cucumber.junit.Cucumber;
 import io.cucumber.junit.CucumberOptions;
 
 @RunWith(Cucumber.class)
-@CucumberOptions(features = "classpath:features/cadastro-cliente.feature",
-		tags="@cadastroDeCliente",glue = "testes")
+@CucumberOptions(features = "classpath:features/consultar-produto.feature",
+		tags="@consultarProduto",glue = "testes")
 public class AdvStoreExec {
 
 }
