@@ -17,7 +17,7 @@ public class ConsultarProduto {
 
 	@Before
 	public void before() {
-		DriverAdvTest.setDriver();
+		//DriverAdvTest.setDriver();
 		driver = new ChromeDriver();
 		System.out.println("Before");
 	}
