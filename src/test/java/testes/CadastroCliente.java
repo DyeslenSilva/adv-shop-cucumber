@@ -19,13 +19,10 @@ public class CadastroCliente {
  
 	
 	private WebDriver driver;
-	@Before
-	public void before() {
-		DriverAdvTest.setDriver();
-		driver = new ChromeDriver();
-		System.out.println("Before");
-	}
 	
+	public CadastroCliente() {
+		DriverAdvTest.setDriver();
+	}
 	
 	@Given("entro na pagina inicial")
 	public void entro_na_pagina_inicial() throws InterruptedException {
@@ -35,8 +32,7 @@ public class CadastroCliente {
 	@Given("clico no botao de cliente")
 	public void clico_no_botao_de_cliente() throws InterruptedException {
 		
-		@SuppressWarnings("deprecation")
-		WebElement botaoCliente = (new WebDriverWait(driver, 10)).until(ExpectedConditions.presenceOfElementLocated(By.xpath("//a[@data-ng-click=\"login('loginMiniTitle')\"]")));
+		WebElement botaoCliente = driver.findElement(By.xpath("//a[@data-ng-click=\"login('loginMiniTitle')\"]"));
 				
 				
 		botaoCliente.click();

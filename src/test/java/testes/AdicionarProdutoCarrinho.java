@@ -1,5 +1,7 @@
 package testes;
 
+import java.util.concurrent.TimeUnit;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -15,19 +17,17 @@ public class AdicionarProdutoCarrinho {
 	private WebDriver driver;
 	
 	
-	@Before
-	public void before() {
-		DriverAdvTest.setDriver();
-		driver = new ChromeDriver();
-		System.out.println("Before");
+	public AdicionarProdutoCarrinho() {
+		DriverAdvTest.getDriver();
 	}
-		
+			
 	
 	
+	@SuppressWarnings("deprecation")
 	@Given("realizo login")
 	public void realizo_login() throws InterruptedException {
-		DriverAdvTest.getDriver().navigate().to("http://advantageonlineshopping.com/#/");
-		Thread.sleep(4000);
+		//DriverAdvTest.getDriver().navigate().to("http://advantageonlineshopping.com/#/");
+		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 		WebElement botaoCliente = driver.findElement(By.xpath("//a[@data-ng-click=\"login('loginMiniTitle')\"]"));
 		botaoCliente.click();
 		
@@ -40,6 +40,7 @@ public class AdicionarProdutoCarrinho {
 	@Given("escolho produto que desejo comprar")
 	public void escolho_produto_que_desejo_comprar() {
 		DriverAdvTest.getDriver().navigate().to("http://advantageonlineshopping.com/#/");
+		
 		WebElement speaker = driver.findElement(By.xpath("//div[@id='speakersImg']"));
 		speaker.click();
 		

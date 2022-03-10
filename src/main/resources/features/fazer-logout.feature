@@ -4,8 +4,8 @@ Feature: Fazer Logout
   @fazerLogout
   Scenario: Fazer Logout
   	Given Entro no site
-  	And clico no botao de <cliente>
+  	And clico no botao de cliente
   	And digito login e senha
   	And valido login
-  	And clico em <sair>
+  	And clico em sair
   	Then valido logout

@@ -15,13 +15,10 @@ public class ConsultarProduto {
 	
 	private WebDriver driver;
 
-	@Before
-	public void before() {
-		//DriverAdvTest.setDriver();
-		driver = new ChromeDriver();
-		System.out.println("Before");
+	
+	public ConsultarProduto() {
+		DriverAdvTest.getDriver();
 	}
-		
 	
 	@Given("escolho uma categoria")
 	public void escolho_uma_categoria() {
