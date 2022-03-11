@@ -2,7 +2,10 @@ package testes;
 
 import static org.junit.Assert.assertTrue;
 
+import java.util.concurrent.TimeUnit;
+
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -21,27 +24,32 @@ public class CadastroCliente {
 	private WebDriver driver;
 	
 	public CadastroCliente() {
-		DriverAdvTest.setDriver();
+		driver = new ChromeDriver();
 	}
 	
+	@SuppressWarnings("deprecation")
 	@Given("entro na pagina inicial")
-	public void entro_na_pagina_inicial() throws InterruptedException {
-		DriverAdvTest.getDriver().navigate().to("http://advantageonlineshopping.com/#/");
+	public void entro_na_pagina_inicial()  {
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		driver.navigate().to("https://advantageonlineshopping.com/#/");
 	}
 	
 	@Given("clico no botao de cliente")
 	public void clico_no_botao_de_cliente() throws InterruptedException {
-		
 		WebElement botaoCliente = driver.findElement(By.xpath("//a[@data-ng-click=\"login('loginMiniTitle')\"]"));
-				
-				
 		botaoCliente.click();
 	}
 	
 	@Given("clico no link <create new account>")
-	public void clico_no_link_create_new_account() {
-		WebElement linkNewAccount = driver.findElement(By.xpath("//a[@class='create-new-account ng-scope']"));
-		linkNewAccount.click();
+	public void clico_no_link_create_new_account() throws InterruptedException {
+		//WebElement linkNewAccount = driver.findElement(By.xpath("//a[@data-ng-click='createNewAccount()']"));
+	WebElement criarConta =	 driver.findElement(By.xpath("//a[@data-ng-click='createNewAccount()']"));
+	Thread.sleep(3000);
+	JavascriptExecutor jsexe = (JavascriptExecutor) driver;
+		
+		Thread.sleep(4000);
+		jsexe.executeScript("javascript:void(0)", criarConta);
+		criarConta.click();
 	}
 	
 	@Given("preencho o formulario com informacoes pessoais")
