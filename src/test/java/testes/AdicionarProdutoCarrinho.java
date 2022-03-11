@@ -23,11 +23,10 @@ public class AdicionarProdutoCarrinho {
 			
 	
 	
-	@SuppressWarnings("deprecation")
 	@Given("realizo login")
 	public void realizo_login() throws InterruptedException {
-		//DriverAdvTest.getDriver().navigate().to("http://advantageonlineshopping.com/#/");
-		driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+		driver.navigate().to("https://advantageonlineshopping.com/#/");
+		//driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
 		WebElement botaoCliente = driver.findElement(By.xpath("//a[@data-ng-click=\"login('loginMiniTitle')\"]"));
 		botaoCliente.click();
 		
